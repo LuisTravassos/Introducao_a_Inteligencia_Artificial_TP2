@@ -1,0 +1,3 @@
+C:/Users/luist/Desktop/TP2_IIA/algoritmoPesquisaLocal/cmake-build-debug/CMakeFiles/algoritmoPesquisaLocal.dir
+C:/Users/luist/Desktop/TP2_IIA/algoritmoPesquisaLocal/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/luist/Desktop/TP2_IIA/algoritmoPesquisaLocal/cmake-build-debug/CMakeFiles/rebuild_cache.dir
