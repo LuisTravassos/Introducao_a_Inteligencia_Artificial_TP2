@@ -8,8 +8,10 @@
 int main(int argc, char *argv[]) {
     char path[] = "../../TestFiles/";
     char nome_fich[100];
-    int runs;
+    int nPoints, nLines, kValue, runs;
+    int *grid, *sol, *best_sol;
 
+    //Obtem nome ficheiro
     if (argc == 3) {
         runs = atoi(argv[2]);
         strcpy(nome_fich, argv[1]);
@@ -27,6 +29,22 @@ int main(int argc, char *argv[]) {
     if(runs <= 0){
         return 0;
     }
-    init_rand();
-    init_dados(path);
+    init_rand();    //Inicializa random
+
+    //Cria matrizes de dados
+    grid=init_dados(path, &nPoints, &nLines, &kValue);
+    //display_grid(grid, nPoints);
+    sol = malloc(sizeof(int)*nPoints);
+    best_sol = malloc(sizeof(int)*nPoints);
+    if(sol == NULL || best_sol == NULL)
+    {
+        printf("Erro na alocacao de memoria");
+        exit(1);
+    }
+
+    for (int i = 0; i <= runs; ++i) {
+        //gerar e mostrar Solução Inicial
+        geraSolIni(sol, nPoints);
+        escreveSol(sol, nPoints);
+    }
 }
