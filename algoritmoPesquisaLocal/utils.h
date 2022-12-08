@@ -7,10 +7,14 @@ void init_rand();
 
 int randomMinMax(int min, int max);
 
-void geraSolIni(int *sol, int point);
+void geraSolIni(int *sol, int point, int k);
 
 void display_grid(int *matriz, int point);
 
-void escreveSol(int *sol, int point);
+int verify(int b[], int k, int p);
+
+void substitui(int a[], int b[], int n);
+
+void escreveSol(int *sol, int k);
 
 #endif //ALGORITMOPESQUISALOCAL_UTILS_H

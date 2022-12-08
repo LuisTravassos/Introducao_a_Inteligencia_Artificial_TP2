@@ -1,0 +1,6 @@
+#ifndef ALGORITMOPESQUISALOCAL_FUNCAO_H
+#define ALGORITMOPESQUISALOCAL_FUNCAO_H
+
+int calculaFit(int a[], int *mat,int point, int k);
+
+#endif //ALGORITMOPESQUISALOCAL_FUNCAO_H

@@ -61,6 +61,18 @@ build CMakeFiles/algoritmoPesquisaLocal.dir/utils.c.obj: C_COMPILER__algoritmoPe
   OBJECT_DIR = CMakeFiles\algoritmoPesquisaLocal.dir
   OBJECT_FILE_DIR = CMakeFiles\algoritmoPesquisaLocal.dir
 
+build CMakeFiles/algoritmoPesquisaLocal.dir/funcao.c.obj: C_COMPILER__algoritmoPesquisaLocal_Debug C$:/Users/luist/Desktop/TP2_IIA/algoritmoPesquisaLocal/funcao.c || cmake_object_order_depends_target_algoritmoPesquisaLocal
+  DEP_FILE = CMakeFiles\algoritmoPesquisaLocal.dir\funcao.c.obj.d
+  FLAGS = -g -std=gnu2x
+  OBJECT_DIR = CMakeFiles\algoritmoPesquisaLocal.dir
+  OBJECT_FILE_DIR = CMakeFiles\algoritmoPesquisaLocal.dir
+
+build CMakeFiles/algoritmoPesquisaLocal.dir/algoritmo.c.obj: C_COMPILER__algoritmoPesquisaLocal_Debug C$:/Users/luist/Desktop/TP2_IIA/algoritmoPesquisaLocal/algoritmo.c || cmake_object_order_depends_target_algoritmoPesquisaLocal
+  DEP_FILE = CMakeFiles\algoritmoPesquisaLocal.dir\algoritmo.c.obj.d
+  FLAGS = -g -std=gnu2x
+  OBJECT_DIR = CMakeFiles\algoritmoPesquisaLocal.dir
+  OBJECT_FILE_DIR = CMakeFiles\algoritmoPesquisaLocal.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target algoritmoPesquisaLocal
@@ -69,7 +81,7 @@ build CMakeFiles/algoritmoPesquisaLocal.dir/utils.c.obj: C_COMPILER__algoritmoPe
 #############################################
 # Link the executable algoritmoPesquisaLocal.exe
 
-build algoritmoPesquisaLocal.exe: C_EXECUTABLE_LINKER__algoritmoPesquisaLocal_Debug CMakeFiles/algoritmoPesquisaLocal.dir/main.c.obj CMakeFiles/algoritmoPesquisaLocal.dir/utils.c.obj
+build algoritmoPesquisaLocal.exe: C_EXECUTABLE_LINKER__algoritmoPesquisaLocal_Debug CMakeFiles/algoritmoPesquisaLocal.dir/main.c.obj CMakeFiles/algoritmoPesquisaLocal.dir/utils.c.obj CMakeFiles/algoritmoPesquisaLocal.dir/funcao.c.obj CMakeFiles/algoritmoPesquisaLocal.dir/algoritmo.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\algoritmoPesquisaLocal.dir

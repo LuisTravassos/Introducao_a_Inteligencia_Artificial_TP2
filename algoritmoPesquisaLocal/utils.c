@@ -47,39 +47,57 @@ int* init_dados(char *nome, int *point, int *line, int *k)
     return p;
 }
 
-void geraSolIni(int *sol, int point){
-    int i, x;
+void geraSolIni(int *sol, int point, int k){
+    int *temp = malloc(sizeof(int)*point);  //nPoints de tamanho
+    int x;
 
-    for(i=0; i<point; i++)
-        sol[i]=0;
-
-    for(i=0; i<point/2; i++)
+    for(int i=0; i<point; i++)
+        temp[i]=0;
+    for(int i=0; i < k; i++)
     {
-        do
-            x = randomMinMax(0, point-1);
-        while(sol[x] != 0);
-
-        sol[x]=1;
+        do {
+            x = randomMinMax(0, point - 1);
+        }while(temp[x] == 1);
+        temp[x]=1;
     }
+
+    for(int i=0, count = 0; i < point; i++){
+        if(temp[i]==1){
+            sol[count]=i;
+            count++;
+        }
+    }
+    free(temp);
 }
 
-void escreveSol(int *sol, int point){
-    int i;
-
-    printf("\nConjunto A: ");
-    for(i=0; i<point; i++)
-        if(sol[i]==0)
-            printf("%2d  ", i);
-    printf("\nConjunto B: ");
-    for(i=0; i<point; i++)
-        if(sol[i]==1)
-            printf("%2d  ", i);
+void escreveSol(int *sol, int k){
+    printf("\nSolucao: ");  //Usa-se os primeiros 8 indices com 1 no array sol como solução
+    for(int i=0; i < k; i++){
+        printf("%2d  ", sol[i]);
+    }
     printf("\n");
 }
 
 
 int randomMinMax(int min, int max){
     return min + rand() % (max-min+1);
+}
+
+//Verifica se existe um valor igual já no array
+int verify(int b[], int k, int p){
+    for(int i=0; i < k; i++){
+        if(b[i] == p){
+            return 1;   //invalido
+        }
+    }
+    return 0;   //valido
+}
+
+// copia vector b para a (tamanho n)
+void substitui(int a[], int b[], int k){
+    int i;
+    for(i=0; i<k; i++)
+        a[i]=b[i];
 }
 
 void display_grid(int *matriz, int point){
@@ -89,4 +107,5 @@ void display_grid(int *matriz, int point){
             printf("%d ", matriz[i*point + j]);
         }
     }
+    puts("\n");
 }
