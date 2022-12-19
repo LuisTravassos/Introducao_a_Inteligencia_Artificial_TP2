@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "algoritmo.h"
 #include "funcao.h"
 #include "utils.h"
@@ -25,7 +26,8 @@ void geraVizinho(int a[], int b[], int n, int k){
 
 int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
 
-    int *novaSol, custo, custoViz, i;
+    int *novaSol, custo, custoViz, delta;
+    int tmax = TMAX;
 
     novaSol = malloc(sizeof(int) * k);
     if (novaSol == NULL) //Por completar
@@ -37,13 +39,34 @@ int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
     // Avalia solucao inicial
     custo = calculaFit(sol, mat, point, k);
 
-    for (i = 0; i < numIter; i++) {
+
+    for (int i = 0; i < numIter; i++) {
         // Gera vizinho
         geraVizinho(sol, novaSol, point, k);
         // Avalia vizinho
         custoViz = calculaFit(novaSol, mat, point, k);
+
+
+    /*
+        delta = custoViz - custo;
+        if(delta >= 0){
+        substitui(sol, novaSol, k);
+        custo = custoViz;
+        }else {
+            int expression = exp(-delta / tmax);
+            if (randomMinMax(0, 100) < (100 * expression)) {
+                substitui(sol, novaSol, k);
+                custo = custoViz;
+            }
+        }
+        //tmax = tmax - ALPHA;
+        //tmax = tmax * ALPHA;
+        tmax = tmax / (1 + ALPHA * tmax);
+        */
+
+
         // Aceita vizinho se o custo aumentar (problema de maximização)
-        if (custoViz > custo)   //Aceita soluções com menor custo
+        if (custoViz > custo || randomMinMax(0, 100) < CHANCE)   //Aceita soluções com menor custo e custo igual e com chance
         {
             substitui(sol, novaSol, k);
             custo = custoViz;
@@ -53,6 +76,7 @@ int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
             //printf("\t\nCusto -> %d\n", custoViz);
         }
     }
+
     free(novaSol);
     return custo;
 }
