@@ -4,7 +4,7 @@
 #include "utils.h"
 #include "algoritmo.h"
 
-#define DEFAULT_RUNS 30;
+#define DEFAULT_RUNS 1000;
 #define DEFAULT_INTERACTIONS 300;
 
 int main(int argc, char *argv[]) {

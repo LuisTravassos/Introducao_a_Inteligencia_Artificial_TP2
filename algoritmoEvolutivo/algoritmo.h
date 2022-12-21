@@ -14,6 +14,8 @@ struct info
     float   pr;
     // Tamanho do torneio para seleção do pai da próxima geração
     int     tsize;
+    // Constante para avaliação com penalização
+    float   ro;
     // Número de objetos que se podem colocar na mochila
     int     numMochila;
     // Número de gerações
@@ -33,5 +35,14 @@ struct individual
     int     valido;
 };
 
+void tournament(pchrom pop, struct info d, pchrom parents);
+
+void genetic_operators(pchrom parents, struct info d, pchrom offspring);
+
+void crossover(pchrom parents, struct info d, pchrom offspring);
+
+void mutation(pchrom offspring, struct info d);
+
+void correction(pchrom offspring, struct info d, int k);
 
 #endif //ALGORITMOEVOLUTIVO_ALGORITMO_H

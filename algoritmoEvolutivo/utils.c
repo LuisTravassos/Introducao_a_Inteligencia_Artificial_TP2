@@ -96,11 +96,21 @@ int randomMinMax(int min, int max){
     return min + rand() % (max-min+1);
 }
 
-void writeBest(chrom x, struct info d){
-    int i;
+chrom get_best(pchrom pop, struct info d, chrom best){
 
-    //printf("\nBest individual: %4.1f\n", x.fitness);
-    for (i=0; i<d.numMochila; i++)
-        printf("%d", x.mochila[i]);
-    putchar('\n');
+    for (int i=0; i<d.popsize; i++)
+    {
+        if (best.fitness < pop[i].fitness)
+            best=pop[i];
+    }
+    return best;
+}
+
+void writeBest(chrom x, struct info d){
+    printf("Custo: %4.1f\n", x.fitness);
+    for (int i=0; i<d.numMochila; i++){
+        if(x.mochila[i]==1){
+            printf(" %d", i);
+        }
+    }
 }
