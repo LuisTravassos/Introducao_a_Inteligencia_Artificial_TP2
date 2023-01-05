@@ -6,7 +6,7 @@
 #include "funcao.h"
 #include "utils.h"
 
-#define DEFAULT_RUNS	30
+#define DEFAULT_RUNS	5
 #define DEFAULT_INTERACTIONS     100
 
 int main(int argc, char *argv[]) {
@@ -21,10 +21,10 @@ int main(int argc, char *argv[]) {
 
 
     EA_param.popsize = 10; //tamanho da população
-    EA_param.pr = 1;     //probabilidade de recombinação
-    EA_param.pm = 1;    //probabilidade de mutação
-    EA_param.tsize = 80;    //tamanho do torneio
-    EA_param.numGenerations = 300;  //numero de geracoes
+    EA_param.pr = 50;     //probabilidade de recombinação
+    EA_param.pm = 50;    //probabilidade de mutação
+    EA_param.tsize = 2;    //tamanho do torneio
+    EA_param.numGenerations = 30;  //numero de geracoes
 
 
     //Obtem nome ficheiro
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
             tournament(pop, EA_param, parents);
 
             genetic_operators(parents, EA_param, pop);
-            //correction(pop, EA_param, kValue);  //Altera os dados, talvez seja a causa do falhanço
+            correction(pop, EA_param, kValue);  //Altera os dados, talvez seja a causa do falhanço
 
             // Avalia a nova popula��o (a dos filhos)
             evaluate(pop, EA_param, *mat, kValue);

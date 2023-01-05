@@ -4,8 +4,8 @@
 #include "utils.h"
 #include "algoritmo.h"
 
-#define DEFAULT_RUNS 1000;
-#define DEFAULT_INTERACTIONS 300;
+#define DEFAULT_RUNS 10;
+#define DEFAULT_INTERACTIONS 3000;
 
 int main(int argc, char *argv[]) {
     char path[] = "../../TestFiles/";

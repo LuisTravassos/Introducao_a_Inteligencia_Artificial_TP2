@@ -26,10 +26,10 @@ float eval_individual(int sol[], struct info d, int *mat, int *v, int k){
         *v = 0;
         return -1;//numero de zeros;
     }
-    if(counter != k){
+    /*if(counter != k){
         *v = 0;
         return -2;
-    }
+    }*/
     *v = 1;
     //printf("->%d\n", total);
     return total;

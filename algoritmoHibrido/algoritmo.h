@@ -1,48 +1,18 @@
-#ifndef ALGORITMOHIBRIDO_ALGORITMO_H
-#define ALGORITMOHIBRIDO_ALGORITMO_H
+#ifndef ALGORITMOPESQUISALOCAL_ALGORITMO_H
+#define ALGORITMOPESQUISALOCAL_ALGORITMO_H
 
-#define MAX_OBJ 1000		// Numero maximo de objectos
+#define CHANCE -1   //desligado
+#define TMAX 40
+#define ALPHA 0
 
-// EStrutura para armazenar parametros
-struct info
-{
-    // Tamanho da população
-    int     popsize;
-    // Probabilidade de mutação
-    float   pm;
-    // Probabilidade de recombinação
-    float   pr;
-    // Tamanho do torneio para seleção do pai da próxima geração
-    int     tsize;
-    // Constante para avaliação com penalização
-    float   ro;
-    // Número de objetos que se podem colocar na mochila
-    int     numGenes;
-    // Capacidade da mochila
-    int     capacity;
-    // Número de gerações
-    int     numGenerations;
-};
+int trepaColinas(int sol[], int sol2[], int *mat, int point, int k, int numIter);
 
-// Individuo (solução)
-typedef struct individual chrom, *pchrom;
+int geneticTrepaColinas(int pai[], int mae[], int *mat, int point, int k, int numIter, int pr, int pm);
 
-struct individual
-{
-    // Solução (objetos que estão dentro da mochila)
-    int     p[MAX_OBJ];
-    // Valor da qualidade da solução
-    float   fitness;
-    // 1 se for uma solução válida e 0 se não for
-    int     valido;
-};
+void crossover(int pai[], int mae[], int son[], int nPoints);
 
-void tournament(pchrom pop, struct info d, pchrom parents);
+void mutation(int pai[], int son[], int nPoints);
 
-void genetic_operators(pchrom parents, struct info d, pchrom offspring);
+void geraVizinho(int a[], int b[], int n, int k);
 
-void crossover(pchrom parents, struct info d, pchrom offspring);
-
-void mutation(pchrom offspring,struct info d);
-
-#endif //ALGORITMOHIBRIDO_ALGORITMO_H
+#endif //ALGORITMOPESQUISALOCAL_ALGORITMO_H

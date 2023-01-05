@@ -66,7 +66,7 @@ int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
 
 
         // Aceita vizinho se o custo aumentar (problema de maximização)
-        if (custoViz > custo || randomMinMax(0, 100) < CHANCE)   //Aceita soluções com menor custo e custo igual e com chance
+        if (custoViz > custo)  // || randomMinMax(0, 100) < CHANCE)   //Aceita soluções com menor custo e custo igual e com chance
         {
             substitui(sol, novaSol, k);
             custo = custoViz;

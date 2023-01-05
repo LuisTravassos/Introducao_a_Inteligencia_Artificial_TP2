@@ -46,7 +46,7 @@ void crossover(pchrom parents, struct info d, pchrom offspring){
 
     for (int i=0; i<d.popsize; i+=2)
     {
-        if (randomMinMax(0,1) < d.pr)
+        if (randomMinMax(1,100) < d.pr)
         {
             point = randomMinMax(0, d.numMochila);
             for (int j=0; j<point; j++)
@@ -72,7 +72,7 @@ void mutation(pchrom offspring, struct info d){
 
     for (int i=0; i<d.popsize; i++){
         for (int j=0; j<d.numMochila; j++){
-            if (randomMinMax(0,1) < d.pm){
+            if (randomMinMax(1,100) < d.pm){
                 offspring[i].mochila[j] = !(offspring[i].mochila[j]);
             }
         }

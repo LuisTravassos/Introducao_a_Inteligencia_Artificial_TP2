@@ -1,22 +1,20 @@
-#ifndef ALGORITMOHIBRIDO_UTILS_H
-#define ALGORITMOHIBRIDO_UTILS_H
+#ifndef ALGORITMOPESQUISALOCAL_UTILS_H
+#define ALGORITMOPESQUISALOCAL_UTILS_H
 
-struct info init_data(char *s, int mat[][2]);
-
-pchrom init_pop(struct info d);
-
-void print_pop(pchrom pop, struct info d);
-
-chrom get_best(pchrom pop, struct info d, chrom best);
-
-void write_best(chrom x, struct info d);
+int* init_dados(char *nome, int *point, int *line, int *k);
 
 void init_rand();
 
-int random_l_h(int min, int max);
+int randomMinMax(int min, int max);
 
-float rand_01();
+void geraSolIni(int *sol, int point, int k);
 
-int flip();
+void display_grid(int *matriz, int point);
 
-#endif //ALGORITMOHIBRIDO_UTILS_H
+int verify(int b[], int k, int p);
+
+void substitui(int a[], int b[], int k);
+
+void escreveSol(int *sol, int k);
+
+#endif //ALGORITMOPESQUISALOCAL_UTILS_H
