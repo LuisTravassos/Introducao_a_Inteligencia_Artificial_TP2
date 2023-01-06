@@ -25,39 +25,15 @@ void tournament(pchrom pop, struct info d, pchrom parents){
 
         }
     }
-
-    // Realiza popsize torneios
-    for (int i=0; i<d.popsize;i++) {
-        x1 = randomMinMax(0, d.popsize - 1);
-        do {
-            x2 = randomMinMax(0, d.popsize - 1);
-        }while (x1==x2);
-
-        if (pop[x1].fitness > pop[x2].fitness)		// Problema de maximizacao
-            parents[i] = pop[x1];
-        else
-            parents[i] = pop[x2];
-    }
 }
 
 
 void genetic_operators(pchrom parents, struct info d, pchrom offspring){
     // Recombina��o com um ponto de corte
     crossover(parents, d, offspring);
-    // Recombina��o com dois pontos de corte
-    // Exerc�cio 4.4(a)
-    //recombinacao_dois_pontos_corte(parents, d, offspring);
-
-    // Recombina��o uniforme
-    // Exerc�cio 4.4(b)
-    //recombinacao_uniforme(parents, d, offspring);
-
 
     // Muta��o bin�ria
     mutation(offspring, d);
-    // Muta��o por troca
-    // Exerc�cio 4.3
-    //mutacao_por_troca(offspring, d);
 }
 
 void crossover(pchrom parents, struct info d, pchrom offspring){

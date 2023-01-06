@@ -18,7 +18,7 @@ float eval_individual(int sol[], struct info d, int *mat, int *v, int k){
         {
             for (int j = i; j < d.numMochila; j++)
                 if (sol[j] == 1 && *(mat + i*d.numMochila + j) == 1)
-                    total++; //total Ã© o numero de ligaÃ§oes entre os membros dos grupos de 0's
+                    total++;
         }
     }
 

@@ -44,10 +44,10 @@ int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
         geraVizinho(sol, novaSol1, point, k);
         custoViz1 = calculaFit(novaSol1, mat, point, k);
 
-        //2 Vizinhanças
+        /*//2 Vizinhanças
         geraVizinho(sol, novaSol2, point, k);
         custoViz2 = calculaFit(novaSol2, mat, point, k);
-
+        */
 
         // Aceita vizinho se o custo aumentar (problema de maximização)
         if (custoViz1 >= custo)
@@ -56,12 +56,13 @@ int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
             custo = custoViz1;
         }
 
-        //2 Vizinhanças
+        /*//2 Vizinhanças
         if (custoViz2 >= custo)
         {
             substitui(sol, novaSol2, k);
             custo = custoViz2;
         }
+         */
     }
 
     free(novaSol1);

@@ -51,71 +51,56 @@ int main(int argc, char *argv[]) {
     //displayGrid(*mat, EA_param.numMochila);
     //puts("\n");
 
-    for (int j = 0; j < 3; ++j) {
-        if (j == 0) {
-            EA_param.tsize = 2;    //tamanho do torneio
-        } else if (j == 1) {
-            EA_param.tsize = 10;    //tamanho do torneio
-        } else if (j == 2) {
-            EA_param.tsize = 50;    //tamanho do torneio
+    for (int r=0; r<runs; r++){
+        //printf("\nRepeticao %d:\n",r+1);
+
+        pop = initPop(EA_param, kValue);
+
+        evaluate(pop, EA_param, *mat, kValue);
+
+        best_run = pop[0];
+        best_run = get_best(pop, EA_param, best_run);
+
+        parents = malloc(sizeof(chrom)*EA_param.popsize);
+        if (parents==NULL){
+            printf("Erro na alocacao de memoriaa\n");
+            exit(1);
         }
 
-        for (int r=0; r<runs; r++){
-            //printf("\nRepeticao %d:\n",r+1);
+        // Ciclo de optimização
+        gen_actual = 1;
 
-            pop = initPop(EA_param, kValue);
+        while (gen_actual <= EA_param.numGenerations){
+            tournament(pop, EA_param, parents);
 
+            genetic_operators(parents, EA_param, pop);
+            correction(pop, EA_param, kValue);  //Altera os dados, talvez seja a causa do falhanço
+
+            // Avalia a nova população (a dos filhos)
             evaluate(pop, EA_param, *mat, kValue);
-
-            best_run = pop[0];
             best_run = get_best(pop, EA_param, best_run);
-
-            parents = malloc(sizeof(chrom)*EA_param.popsize);
-            if (parents==NULL){
-                printf("Erro na alocacao de memoriaa\n");
-                exit(1);
-            }
-
-            // Ciclo de optimização
-            gen_actual = 1;
-
-            while (gen_actual <= EA_param.numGenerations){
-                tournament(pop, EA_param, parents);
-
-                genetic_operators(parents, EA_param, pop);
-                correction(pop, EA_param, kValue);  //Altera os dados, talvez seja a causa do falhanço
-
-                // Avalia a nova popula��o (a dos filhos)
-                evaluate(pop, EA_param, *mat, kValue);
-                best_run = get_best(pop, EA_param, best_run);
-                gen_actual++;
-            }
-            for (inv=0, i=0; i<EA_param.popsize; i++){
-                if (pop[i].valido == 0){
-                    inv++;
-                }
-            }
-            // Escreve resultados da repeti��o que terminou
-            //writeBest(best_run, EA_param);
-            //printf("\nPercentagem Invalidos: %f\n", 100*(float)inv/EA_param.popsize);
-            mbf += best_run.fitness;
-            if (r==0 || best_run.fitness > best_ever.fitness)
-                best_ever = best_run;
-            // Liberta a mem�ria usada
-            free(parents);
-            free(pop);
+            gen_actual++;
         }
-
-        // Escreve resultados globais
-        printf("\n\nMBF: %f", mbf/runs);
-        printf("\nMelhor solucao encontrada\n");
-        writeBest(best_ever, EA_param);
-        //logtofile(best_ever, EA_param,mbf/r);
-
-        mbf = 0;
-
+        for (inv=0, i=0; i<EA_param.popsize; i++){
+            if (pop[i].valido == 0){
+                inv++;
+            }
+        }
+        // Escreve resultados da repetição que terminou
+        writeBest(best_run, EA_param);
+        printf("\nPercentagem Invalidos: %f\n", 100*(float)inv/EA_param.popsize);
+        mbf += best_run.fitness;
+        if (r==0 || best_run.fitness > best_ever.fitness)
+            best_ever = best_run;
+        // Liberta a memória usada
+        free(parents);
+        free(pop);
     }
 
+    // Escreve resultados globais
+    printf("\n\nMBF: %f", mbf/runs);
+    printf("\nMelhor solucao encontrada\n");
+    writeBest(best_ever, EA_param);
 
     return 0;
 }
