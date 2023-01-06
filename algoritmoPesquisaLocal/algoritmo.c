@@ -50,14 +50,14 @@ int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
 
 
         // Aceita vizinho se o custo aumentar (problema de maximização)
-        if (custoViz1 > custo)
+        if (custoViz1 >= custo)
         {
             substitui(sol, novaSol1, k);
             custo = custoViz1;
         }
 
         //2 Vizinhanças
-        if (custoViz2 > custo)
+        if (custoViz2 >= custo)
         {
             substitui(sol, novaSol2, k);
             custo = custoViz2;

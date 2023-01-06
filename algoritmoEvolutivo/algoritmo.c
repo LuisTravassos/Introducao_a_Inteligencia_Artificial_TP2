@@ -6,6 +6,25 @@
 
 void tournament(pchrom pop, struct info d, pchrom parents){
     int x1, x2;
+    for (int i=0; i<d.popsize;i++) {
+
+        x1 = randomMinMax(0, d.popsize - 1);
+
+        for (int j = 0; j < d.tsize-1; j++) {
+
+            do {
+                x2 = randomMinMax(0, d.popsize - 1);
+            } while (x1 == x2);
+
+            if (pop[x1].fitness > pop[x2].fitness){
+                parents[i] = pop[x1];
+            }else{
+                parents[i] = pop[x2];
+                x1 = x2;
+            }
+
+        }
+    }
 
     // Realiza popsize torneios
     for (int i=0; i<d.popsize;i++) {

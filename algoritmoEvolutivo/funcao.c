@@ -9,7 +9,7 @@ float eval_individual(int sol[], struct info d, int *mat, int *v, int k){
 
     for (int j=0; j<d.numMochila; j++){
         if(sol[j] == 1){
-            counter++;
+            counter++;  //4
         }
     }
 
@@ -24,16 +24,18 @@ float eval_individual(int sol[], struct info d, int *mat, int *v, int k){
 
     if(total == 0){
         *v = 0;
-        return -1;//numero de zeros;
+    }else{
+        *v = 1;
     }
-    /*if(counter != k){
-        *v = 0;
-        return -2;
-    }*/
-    *v = 1;
-    //printf("->%d\n", total);
-    return total;
 
+
+    /*if(counter != k  || total == 0){
+        *v = 0;
+    }else{
+        *v = 1;
+    }*/
+
+    return total;
 }
 
 

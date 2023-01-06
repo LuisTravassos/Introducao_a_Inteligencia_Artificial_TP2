@@ -14,8 +14,6 @@ struct info
     float   pr;
     // Tamanho do torneio para seleção do pai da próxima geração
     int     tsize;
-    // Constante para avaliação com penalização
-    float   ro;
     // Número de objetos que se podem colocar na mochila
     int     numMochila;
     // Número de gerações
