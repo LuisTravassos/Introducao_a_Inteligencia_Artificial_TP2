@@ -26,11 +26,12 @@ void geraVizinho(int a[], int b[], int n, int k){
 
 int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
 
-    int *novaSol, custo, custoViz, delta;
+    int *novaSol1, *novaSol2, custo, custoViz1, custoViz2, delta;
     int tmax = TMAX;
 
-    novaSol = malloc(sizeof(int) * k);
-    if (novaSol == NULL) //Por completar
+    novaSol1 = malloc(sizeof(int) * k);
+    novaSol2 = malloc(sizeof(int) * k);
+    if (novaSol1 == NULL || novaSol2 == NULL)
     {
         printf("Erro na alocacao de memoria");
         exit(1);
@@ -39,44 +40,31 @@ int trepaColinas(int sol[], int *mat, int point, int k, int numIter) {
     // Avalia solucao inicial
     custo = calculaFit(sol, mat, point, k);
 
-
     for (int i = 0; i < numIter; i++) {
-        // Gera vizinho
-        geraVizinho(sol, novaSol, point, k);
-        // Avalia vizinho
-        custoViz = calculaFit(novaSol, mat, point, k);
+        geraVizinho(sol, novaSol1, point, k);
+        custoViz1 = calculaFit(novaSol1, mat, point, k);
 
-
-    /*
-        delta = custoViz - custo;
-        if(delta >= 0){
-        substitui(sol, novaSol, k);
-        custo = custoViz;
-        }else {
-            int expression = exp(-delta / tmax);
-            if (randomMinMax(0, 100) < (100 * expression)) {
-                substitui(sol, novaSol, k);
-                custo = custoViz;
-            }
-        }
-        //tmax = tmax - ALPHA;
-        //tmax = tmax * ALPHA;
-        tmax = tmax / (1 + ALPHA * tmax);
-        */
+        //2 Vizinhanças
+        geraVizinho(sol, novaSol2, point, k);
+        custoViz2 = calculaFit(novaSol2, mat, point, k);
 
 
         // Aceita vizinho se o custo aumentar (problema de maximização)
-        if (custoViz > custo)  // || randomMinMax(0, 100) < CHANCE)   //Aceita soluções com menor custo e custo igual e com chance
+        if (custoViz1 > custo)
         {
-            substitui(sol, novaSol, k);
-            custo = custoViz;
+            substitui(sol, novaSol1, k);
+            custo = custoViz1;
+        }
 
-            //Debbuging
-            //escreveSol(sol, k);
-            //printf("\t\nCusto -> %d\n", custoViz);
+        //2 Vizinhanças
+        if (custoViz2 > custo)
+        {
+            substitui(sol, novaSol2, k);
+            custo = custoViz2;
         }
     }
 
-    free(novaSol);
+    free(novaSol1);
+    free(novaSol2);
     return custo;
 }

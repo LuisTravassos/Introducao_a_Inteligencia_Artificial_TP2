@@ -4,8 +4,9 @@
 #include "utils.h"
 #include "algoritmo.h"
 
+#define DEFAULT_SUPREME_RUNS 4
 #define DEFAULT_RUNS 10;
-#define DEFAULT_INTERACTIONS 3000;
+#define DEFAULT_INTERACTIONS 100;
 
 int main(int argc, char *argv[]) {
     char path[] = "../../TestFiles/";
@@ -37,41 +38,58 @@ int main(int argc, char *argv[]) {
     }
     init_rand();    //Inicializa random
 
-    //Cria matrizes de dados
-    grid=init_dados(path, &nPoints, &nLines, &kValue);
-    //display_grid(grid, nPoints);
-    sol = malloc(sizeof(int)*kValue);  //nPoints de tamanho
-    bestSol = malloc(sizeof(int)*kValue);   //kValue de tamanho
-    if(sol == NULL || bestSol == NULL)
-    {
-        printf("Erro na alocacao de memoria");
-        exit(1);
-    }
-
-    for (i = 1; i <= runs; ++i) {
-        //gerar e mostrar Solução Inicial
-        geraSolIni(sol, nPoints, kValue);
-        //escreveSol(sol, kValue);   //Reavaliada e pronta para o trabalho
-
-        //Calcular Custo
-        cost = trepaColinas(sol, grid, nPoints, kValue ,numIter);
-
-        // Escreve resultados da repeticao k
-        printf("\nRepeticao %d:", i);
-        escreveSol(sol, kValue);
-        printf("Custo final: %2d\n", cost);
-        mbf += cost;
-        if(i==1 || bestCost < cost)
-        {
-            bestCost = cost;
-            substitui(bestSol, sol, kValue);
+    for (int j = 0; j < DEFAULT_SUPREME_RUNS; ++j) {
+        if(j==0){
+            runs = 100;
+        }else if(j == 1){
+            runs = 1000;
+        }else if(j == 2){
+            runs = 5000;
+        }else if(j == 3){
+            runs = 10000;
         }
+
+        //Cria matrizes de dados
+        grid=init_dados(path, &nPoints, &nLines, &kValue);
+        //display_grid(grid, nPoints);
+        sol = malloc(sizeof(int)*kValue);  //nPoints de tamanho
+        bestSol = malloc(sizeof(int)*kValue);   //kValue de tamanho
+        if(sol == NULL || bestSol == NULL)
+        {
+            printf("Erro na alocacao de memoria");
+            exit(1);
+        }
+
+        for (i = 1; i <= runs; ++i) {
+            //gerar e mostrar Solução Inicial
+            geraSolIni(sol, nPoints, kValue);
+            //escreveSol(sol, kValue);   //Reavaliada e pronta para o trabalho
+
+            //Calcular Custo
+            cost = trepaColinas(sol, grid, nPoints, kValue ,numIter);
+
+            // Escreve resultados da repeticao k
+            //printf("\nRepeticao %d:", i);
+            //escreveSol(sol, kValue);
+            //printf("Custo final: %2d\n", cost);
+            mbf += cost;
+            if(i==1 || bestCost < cost)
+            {
+                bestCost = cost;
+                substitui(bestSol, sol, kValue);
+            }
+        }
+        // Escreve eresultados globais
+        printf("\n\nMBF: %f\n", mbf/runs);
+        printf("\nMelhor solucao encontrada");
+        escreveSol(bestSol, kValue);
+        printf("Custo final: %2d\n", bestCost);
+
+        mbf = 0;
+
     }
-    // Escreve eresultados globais
-    printf("\n\nMBF: %f\n", mbf/i);
-    printf("\nMelhor solucao encontrada");
-    escreveSol(bestSol, kValue);
-    printf("Custo final: %2d\n", bestCost);
+
+
     free(grid);
     free(sol);
     free(bestSol);
