@@ -1,41 +1,41 @@
-Trabalho de Otimização - Maximum Edge Subgraph Problem
+Optimization Project - Maximum Edge Subgraph Problem
 
-Este repositório contém a implementação e testes de métodos de otimização para encontrar soluções de alta qualidade para o Maximum Edge Subgraph Problem.
-Objetivos
+This repository contains the implementation and testing of optimization methods to find high-quality solutions for the Maximum Edge Subgraph Problem.
+Objectives
 
-O objetivo deste trabalho foi conceber, implementar e testar métodos de otimização que encontrassem soluções de alta qualidade para diferentes instâncias do problema descrito abaixo.
+The aim of this project was to conceive, implement, and test optimization methods that would find high-quality solutions for different instances of the problem described below.
 Maximum Edge Subgraph Problem
 
-O Maximum Edge Subgraph Problem consiste em, dado um grafo não direcionado 𝐺 = (𝑉, A) e um valor inteiro k, encontrar um subconjunto de k-vértices tal que o número de arestas dentro do subconjunto seja máximo.
-Definição Formal
+The Maximum Edge Subgraph Problem consists of, given an undirected graph 𝐺 = (𝑉, A) and an integer value k, finding a subset of k vertices such that the number of edges within the subset is maximized.
+Formal Definition
 
-Dados:
+Given:
 
-    Um grafo não direcionado 𝐺 = (𝑉, A) composto por um conjunto V de vértices ligados entre si por arestas A.
-    Um inteiro k.
+    An undirected graph 𝐺 = (𝑉, A) composed of a set V of vertices connected by edges A.
+    An integer k.
 
-Problema:
+Problem:
 
-    Encontrar um subconjunto de vértices S, de tamanho k, tal que 𝑆 ⊆ 𝑉, de forma a maximizar o número de arestas desse subconjunto.
+    Find a subset of vertices S, of size k, such that 𝑆 ⊆ 𝑉, in order to maximize the number of edges in this subset.
 
-O objetivo deste problema é, portanto, de maximização.
-Estrutura do Projeto
+The objective of this problem is therefore maximization.
+Project Structure
 
-    /src: Contém o código-fonte da implementação.
-    /tests: Casos de teste e arquivos relacionados.
-    /docs: Documentação adicional (se houver).
-    /data: Dados de exemplo ou necessários para o funcionamento do programa.
+    /src: Contains the implementation source code.
+    /tests: Test cases and related files.
+    /docs: Additional documentation (if any).
+    /data: Example data or files necessary for program operation.
 
-Como Usar
+How to Use
 
-    Faça o clone deste repositório.
-    Abra o projeto em um ambiente de desenvolvimento compatível com a linguagem escolhida.
-    Certifique-se de ter as dependências e bibliotecas necessárias configuradas corretamente.
-    Execute os métodos de otimização para encontrar soluções para diferentes instâncias do problema.
+    Clone this repository.
+    Open the project in a development environment compatible with the chosen language.
+    Ensure that the necessary dependencies and libraries are correctly configured.
+    Execute the optimization methods to find solutions for different instances of the problem.
 
-Contribuições
+Contributions
 
-Contribuições são bem-vindas! Se você encontrar bugs, melhorias ou deseja adicionar novos métodos de otimização, sinta-se à vontade para abrir uma issue ou criar um pull request.
-Licença
+Contributions are welcome! If you find bugs, have suggestions for improvements, or want to add new optimization methods, feel free to open an issue or create a pull request.
+License
 
-Este projeto está sob a licença MIT.
+This project is under the MIT License.
